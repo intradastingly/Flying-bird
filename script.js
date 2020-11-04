@@ -2,6 +2,9 @@ window.onload = start;
 
 /** the position of the bird relative to the left side of the page */
 let left = 0;
+let right = 1;
+let down = 0;
+let up = 0;
 
 /** starts the program on page load. */
 function start() {
@@ -9,6 +12,8 @@ function start() {
 }
 
 /** Moves the bird to the right.  */
+
+
 function moveBirdToTheRight(){
     const bird = document.getElementById('bird');
     
@@ -17,28 +22,31 @@ function moveBirdToTheRight(){
 
     //render position
     bird.style.left = left + '%';
+    if (left >= 100){
+        left = -50;
+    }
+   
 }
 
 /** sets an interval to make the bird fly */
 function fly() {
     setInterval(moveBirdToTheRight,2);
+    setInterval(moveBirdDown,1);
 }
 
-/*
-function testForLoop(){
-    console.time('loop');
 
-    const iterations = 100000000000000000000;
-    for (let i = 0; i < iterations.length; i++) {
-        //nothing
+function moveBirdDown(){
+    const bird = document.getElementById('bird');
+    down += 0.1;
+    bird.style.top= down + '%';
+    if (down >= 100){
+        down = -20;
     }
-
-    console.timeEnd('loop');
-
+    console.log(down);
 }
 
-testForLoop();
-
-*/
-
-//break problem down into smaller parts
+function turnBirdAround(){
+    const bird = document.getElementById('bird');
+    up += 0.1;
+    bird.style.bottom= up + '%';
+}
